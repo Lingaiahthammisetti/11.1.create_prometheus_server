@@ -35,6 +35,7 @@ rm -rf prometheus*
 VALIDATE $? "removed existing prometheus"
 
 wget https://github.com/prometheus/prometheus/releases/download/v2.54.0-rc.0/prometheus-2.54.0-rc.0.linux-amd64.tar.gz &>>$LOGFILE
+VALIDATE $? "Downloading prometheus zip"
 
 tar -xf prometheus-2.54.0-rc.0.linux-amd64.tar.gz  &>>$LOGFILE
 VALIDATE $? "extracted prometheus"
@@ -42,13 +43,13 @@ VALIDATE $? "extracted prometheus"
 mv prometheus-2.54.0-rc.0.linux-amd64 prometheus &>>$LOGFILE
 VALIDATE $? "renamed prometheus"
 
-cp -r /home/ec2-user/11.1.create_prometheus_server/alert-manager/alert-rules /opt/prometheus/ &>>$LOGFILE
+cp -r /home/ec2-user/11.1.create_prometheus_server/Installations/alert-manager/alert-rules /opt/prometheus/ &>>$LOGFILE
 VALIDATE $? "copied alert rules"
 
-cp /home/ec2-user/11.1.create_prometheus_server/prometheus/prometheus.yml prometheus/prometheus.yml &>>$LOGFILE
+cp /home/ec2-user/11.1.create_prometheus_server/Installations/prometheus/prometheus.yml prometheus/prometheus.yml &>>$LOGFILE
 VALIDATE $? "copied prometheus configuration"
 
-cp /home/ec2-user/11.1.create_prometheus_server/prometheus/prometheus.service /etc/systemd/system/prometheus.service &>>$LOGFILE
+cp /home/ec2-user/11.1.create_prometheus_server/Installations/prometheus/prometheus.service /etc/systemd/system/prometheus.service &>>$LOGFILE
 VALIDATE $? "created prometheus service"
  
 systemctl daemon-reload &>>$LOGFILE
