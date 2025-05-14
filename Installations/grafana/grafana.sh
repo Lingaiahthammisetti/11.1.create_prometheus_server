@@ -81,8 +81,7 @@ VALIDATE $? "creating gpg.key"
 rpm --import gpg.key
 VALIDATE $? "importing gpg.key"
 
-
-cp /home/ec2-user/11.1.create_prometheus_server/Installations/Grafana/grafana.repo /etc/yum.repos.d/grafana.repo &>>$LOGFILE
+cp /home/ec2-user/11.1.create_prometheus_server/Installations/grafana/grafana.repo /etc/yum.repos.d/grafana.repo &>>$LOGFILE
 VALIDATE $? "Added grafana repo"
 
 dnf install grafana -y &>>$LOGFILE
