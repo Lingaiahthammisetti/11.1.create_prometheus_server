@@ -3,7 +3,7 @@ resource "aws_instance" "ec2_instance" {
     instance_type = var.ec2_instance.instance_type
     vpc_security_group_ids = [var.allow_everything]
     
-    #user_data = file("${path.module}/Installations/prometheus/prometheus.sh")
+    user_data = file("${path.module}/install/prometheus/prometheus.sh")
     tags = {
         Name = "prometheus_server"
     }
