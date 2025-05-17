@@ -2,7 +2,12 @@ resource "aws_instance" "ec2_instance" {
     ami           = data.aws_ami.rhel_info.id
     instance_type = var.ec2_instance.instance_type
     vpc_security_group_ids = [var.allow_everything]
-    user_data = file("${path.module}/Installations/prometheus/prometheus.sh")
+
+    data "template_file" "user_data" {
+    template = file("${path.module}/Installations/prometheus/prometheus.sh")
+    }
+
+   #user_data = file("${path.module}/Installations/prometheus/prometheus.sh")
     tags = {
         Name = "prometheus_server"
     }
