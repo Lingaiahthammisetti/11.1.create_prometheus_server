@@ -48,3 +48,6 @@ VALIDATE $? "Started Grafana"
 
 systemctl enable grafana-server &>>$LOGFILE
 VALIDATE $? "Enabled Grafana"
+
+systemctl status grafana-server &>>$LOGFILE
+VALIDATE $? "Grafana status"

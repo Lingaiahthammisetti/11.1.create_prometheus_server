@@ -57,3 +57,6 @@ VALIDATE $? "enabled alertmanager"
 
 systemctl start alertmanager &>>$LOGFILE
 VALIDATE $? "Started alertmanager"
+
+systemctl status alertmanager &>>$LOGFILE
+VALIDATE $? "Status alertmanager"
