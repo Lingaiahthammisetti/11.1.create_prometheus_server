@@ -57,6 +57,9 @@ VALIDATE $? "Daemon reload"
 systemctl enable prometheus &>>$LOGFILE
 VALIDATE $? "enabled prometheus"
 
+systemctl daemon-reload &>>$LOGFILE
+VALIDATE $? "Demon reload prometheus"
+
 systemctl start prometheus &>>$LOGFILE
 VALIDATE $? "Started prometheus"
 

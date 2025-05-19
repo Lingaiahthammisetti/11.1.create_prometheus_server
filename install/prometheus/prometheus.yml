@@ -34,8 +34,6 @@ scrape_configs:
       - targets: ["node-1.lingaiah.online:9100"]
         labels:
           name: node-1
-
-    static_configs:
       - targets: ["node-2.lingaiah.online:9100"]
         labels:
           name: node-2
