@@ -76,8 +76,11 @@ scrape_configs:
         target_label: private_ip
 
       # Set the instance name label
+      # - source_labels: [__meta_ec2_tag_Name]
+      #   target_label: instance_name
+       # Set the instance name label
       - source_labels: [__meta_ec2_tag_Name]
-        target_label: instance_name
+        target_label: name
 
       # Set the actual address (IP:port) Prometheus scrapes
       - source_labels: [__meta_ec2_private_ip]
