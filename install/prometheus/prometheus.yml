@@ -29,15 +29,32 @@ scrape_configs:
       - targets: ["localhost:9090"]
         labels:
           name: prometheus
-  - job_name: "nodes"
-    static_configs:
-      - targets: ["node-1.lingaiah.online:9100"]
-        labels:
-          name: node-1
-      - targets: ["node-2.lingaiah.online:9100"]
-        labels:
-          name: node-2
+  ##Static discovery of nodes in prometheus        
+  # - job_name: "nodes"
+  #   static_configs:
+  #     - targets: ["node-1.lingaiah.online:9100"]
+  #       labels:
+  #         name: node-1
+  #     - targets: ["node-2.lingaiah.online:9100"]
+  #       labels:
+  #         name: node-2
+
+  ##Dynamic discovery of nodes in prometheus 
+  - job_name: 'ec2-nodes'
+    ec2_sd_configs:
+      - region: us-east-1
+        port: 9100
+    relabel_configs:
+      - source_labels: [__meta_ec2_instance_id]
+        target_label: instance_id
+      - source_labels: [__meta_ec2_private_ip]
+        target_label: private_ip
+      - source_labels: [__meta_ec2_tag_Name]
+        target_label: name
+        regex: node-.*
+        action: keep
      
+    
   - job_name: "ec2_sd"
     ec2_sd_configs:
     - region: us-east-1
