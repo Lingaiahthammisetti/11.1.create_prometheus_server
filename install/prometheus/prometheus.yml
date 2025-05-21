@@ -50,11 +50,10 @@ scrape_configs:
       - source_labels: [__meta_ec2_private_ip]
         target_label: private_ip
       - source_labels: [__meta_ec2_tag_Name]
-        target_label: name
+        target_label: instance_name
         regex: node-.*
         action: keep
-     
-    
+         
   - job_name: "ec2_sd"
     ec2_sd_configs:
     - region: us-east-1
