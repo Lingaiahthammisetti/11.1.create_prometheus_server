@@ -54,6 +54,7 @@ scrape_configs:
   #       regex: node-.*
   #       action: keep
 
+  ##Dynamic discovery of nodes in prometheus 
   - job_name: 'ec2-nodes'
     ec2_sd_configs:
       - region: us-east-1
