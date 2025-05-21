@@ -31,8 +31,8 @@ receivers:
   - name: 'ses'
     email_configs:
       - smarthost: email-smtp.us-east-1.amazonaws.com:587
-        auth_username: AKIAXBZV5YIIUM3ZZNV2
-        auth_password: BEYkNz8DIy5yYp3CNI9tEB17SGGomy7JkjmFyRJwBPQI
+        auth_username: AKIAXBZV5YIIZ352UCOE
+        auth_password: BJvAK4LdIomMY+7sxuGqmEnn4Zz4bRArQKxdGVBgAvCs
         from: rao.lingaiah@gmail.com
         to: lingayya.tamichetti786@gmail.com
         headers:
