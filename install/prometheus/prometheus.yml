@@ -61,11 +61,16 @@ scrape_configs:
         filters:                 # optional EC2 filters
           - name: "tag:Environment"
             values: ["dev"]
+    
     relabel_configs:
-      # Keep only instances with Name tag matching "node-*"
+      # Keep only instances whose Name tag matches "node-*"
       - source_labels: [__meta_ec2_tag_Name]
         regex: node-.*
         action: keep
+
+      # Set label "name" from EC2 tag Name
+      - source_labels: [__meta_ec2_tag_Name]
+        target_label: name
 
       # Set the target label for instance ID
       - source_labels: [__meta_ec2_instance_id]
@@ -75,14 +80,7 @@ scrape_configs:
       - source_labels: [__meta_ec2_private_ip]
         target_label: private_ip
 
-      # Set the instance name label
-      # - source_labels: [__meta_ec2_tag_Name]
-      #   target_label: instance_name
-       # Set the instance name label
-      - source_labels: [__meta_ec2_tag_Name]
-        target_label: name
-
-      # Set the actual address (IP:port) Prometheus scrapes
+       # Set the actual address (IP:port) Prometheus scrapes
       - source_labels: [__meta_ec2_private_ip]
         target_label: __address__
         replacement: "$1:9100"
