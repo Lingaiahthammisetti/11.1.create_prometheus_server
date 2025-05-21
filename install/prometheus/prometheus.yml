@@ -78,6 +78,7 @@ scrape_configs:
         target_label: __address__
         replacement: '${1}:9100'
    
+   
   - job_name: "ec2_sd"
     ec2_sd_configs:
     - region: us-east-1
