@@ -21,28 +21,22 @@
 #       severity: 'warning'
 #     equal: ['alertname', 'dev', 'instance']
 
-
-global:
-  smtp_smarthost: 'email-smtp.us-east-1.amazonaws.com:587'
-  smtp_from: 'rao.lingaiah@gmail.com'
-  smtp_auth_username: 'AKIAXBZV5YIIUM3ZZNV2'
-  smtp_auth_password: 'BEYkNz8DIy5yYp3CNI9tEB17SGGomy7JkjmFyRJwBPQI'
-  smtp_require_tls: true  # Optional but recommended
-
 route:
   group_by: ['alertname']
   group_wait: 30s
   group_interval: 5m
   repeat_interval: 1h
   receiver: 'ses'
-
 receivers:
   - name: 'ses'
     email_configs:
-      - to: 'lingayya.tamichetti786@gmail.com'
+      - smarthost: email-smtp.us-east-1.amazonaws.com:587
+        auth_username: AKIAXBZV5YIIUM3ZZNV2
+        auth_password: BEYkNz8DIy5yYp3CNI9tEB17SGGomy7JkjmFyRJwBPQI
+        from: rao.lingaiah@gmail.com
+        to: lingayya.tamichetti786@gmail.com
         headers:
-          subject: 'Prometheus Mail Alert'
-
+          subject: Prometheus Mail Alert
 inhibit_rules:
   - source_match:
       severity: 'critical'
