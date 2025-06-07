@@ -3,7 +3,6 @@ resource "aws_instance" "ec2_instance" {
     instance_type = var.ec2_instance.instance_type
     vpc_security_group_ids = [var.allow_everything]
     
-    #user_data = file("${path.module}/prom-graf-alertm.sh")
     tags = {
         Name = "prometheus_server"
     }
